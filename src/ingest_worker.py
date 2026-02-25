@@ -14,7 +14,7 @@ print("ingest worker started", flush=True)
 while True:
     try:
         #API Request
-        url = f"https://api.purpleair.com/v1/sensors/{SENSOR_ID}?read_key={READ_KEY}"        headers = {"X-API-Key": API_KEY}
+        url = f"https://api.purpleair.com/v1/sensors/{SENSOR_ID}?read_key={READ_KEY}"
         headers = {"X-API-Key": API_KEY}
         r = requests.get(url, headers=headers, timeout=15)
         r.raise_for_status()
