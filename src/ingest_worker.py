@@ -1,6 +1,7 @@
 import time
 import os
 import requests
+import psycopg
 
 #Pull Environmental Variables from Render
 
