@@ -13,6 +13,9 @@ DATABASE_URL = os.environ["DATABASE_URL"]
 
 print("ingest worker started", flush=True)
 
+print("connecting to database...", flush=True)
+
+
 with psycopg.connect(DATABASE_URL) as conn: 
     with conn.cursor() as cur:
         cur.execute("""
@@ -25,6 +28,8 @@ with psycopg.connect(DATABASE_URL) as conn:
             );
         """)
     conn.commit()
+
+print("database ready", flush=True)
 
 while True:
     try:
