@@ -46,6 +46,16 @@ while True:
 
         print(f"PM2.5_cf_1={pm25_cf_1}, humidity={humidity}", flush=True)
 
+        with psycopg.connect(DATABASE_URL) as conn:
+            with conn.cursor() as cur:
+                cur.execute(
+                    "INSERT INTO air_readings (sensor_id, pm25, humidity) VALUES (%s, %s, %s);",
+                    (SENSOR_ID, pm25_cf_1, humidity),
+                )
+            conn.commit()
+
+        print("row inserted ✅", flush=True)
+
     except Exception as e:
         print(f"error fetching PurpleAir: {e}", flush=True)
 
